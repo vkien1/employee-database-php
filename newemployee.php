@@ -25,6 +25,12 @@
         <label for="dept_id">Department:</label><br>
         <select id="dept_id" name="dept_id" required>
             <?php
+            session_start();
+
+            if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+                header("Location: login.php"); // Redirect to login page if not authenticated
+                exit();
+            }
             // Connect to database
             $conn = new mysqli('localhost', 'root', '', 'employee_department');
 

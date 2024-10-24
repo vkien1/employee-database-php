@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header("Location: login.php"); // Redirect to login page if not authenticated
+    exit();
+}
 // Database connection
 $conn = new mysqli('localhost', 'root', '', 'employee_department');
 
@@ -69,3 +75,4 @@ $conn->close();
 
 <br>
 <button onclick="window.location.href='newemployee.php';">Back to Add Employee</button>
+<a href="logout.php">Logout</a> <!-- Add a logout link -->
